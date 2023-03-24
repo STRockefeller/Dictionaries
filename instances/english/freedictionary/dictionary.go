@@ -1,11 +1,10 @@
 package freedictionary
 
 import (
-	"encoding/json"
 	"fmt"
-	"net/http"
 
 	"github.com/STRockefeller/dictionaries/instances/internal/apicall"
+	"github.com/STRockefeller/dictionaries/instances/internal/utils"
 )
 
 type Dictionary struct{}
@@ -13,14 +12,8 @@ type Dictionary struct{}
 func NewDictionary() *Dictionary { return &Dictionary{} }
 
 func (d Dictionary) Search(word string) (Result, error) {
-	return apicall.Call(apicall.Get(fmt.Sprintf("https://api.dictionaryapi.dev/api/v2/entries/en/%s", word)), parseResponse)
+	return apicall.Call(apicall.Get(fmt.Sprintf("https://api.dictionaryapi.dev/api/v2/entries/en/%s", word)), utils.ParseResponse[Result])
 
-}
-
-func parseResponse(resp *http.Response) (Result, error) {
-	var result Result
-	err := json.NewDecoder(resp.Body).Decode(&result)
-	return result, err
 }
 
 type Result []ResultElement

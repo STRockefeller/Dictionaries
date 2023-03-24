@@ -1,12 +1,11 @@
 package jishoorg
 
 import (
-	"encoding/json"
 	"fmt"
-	"net/http"
 	"net/url"
 
 	"github.com/STRockefeller/dictionaries/instances/internal/apicall"
+	"github.com/STRockefeller/dictionaries/instances/internal/utils"
 )
 
 type Dictionary struct{}
@@ -14,13 +13,7 @@ type Dictionary struct{}
 func NewDictionary() *Dictionary { return &Dictionary{} }
 
 func (d Dictionary) Search(word string) (Result, error) {
-	return apicall.Call(apicall.Get(fmt.Sprintf("https://jisho.org/api/v1/search/words?keyword=%s", url.QueryEscape(word))), parseResponse)
-}
-
-func parseResponse(resp *http.Response) (Result, error) {
-	var result Result
-	err := json.NewDecoder(resp.Body).Decode(&result)
-	return result, err
+	return apicall.Call(apicall.Get(fmt.Sprintf("https://jisho.org/api/v1/search/words?keyword=%s", url.QueryEscape(word))), utils.ParseResponse[Result])
 }
 
 type Result struct {

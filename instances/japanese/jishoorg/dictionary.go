@@ -13,7 +13,11 @@ type Dictionary struct{}
 func NewDictionary() *Dictionary { return &Dictionary{} }
 
 func (d Dictionary) Search(word string) (Result, error) {
-	return apicall.Call(apicall.Get(fmt.Sprintf("https://jisho.org/api/v1/search/words?keyword=%s", url.QueryEscape(word))), utils.ParseResponse[Result])
+	return apicall.Call(apicall.Get(urlAssemble(word)), utils.ParseResponseBody[Result])
+}
+
+func urlAssemble(word string) string {
+	return fmt.Sprintf("https://jisho.org/api/v1/search/words?keyword=%s", url.QueryEscape(word))
 }
 
 type Result struct {

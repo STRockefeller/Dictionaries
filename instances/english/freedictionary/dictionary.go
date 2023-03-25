@@ -12,8 +12,11 @@ type Dictionary struct{}
 func NewDictionary() *Dictionary { return &Dictionary{} }
 
 func (d Dictionary) Search(word string) (Result, error) {
-	return apicall.Call(apicall.Get(fmt.Sprintf("https://api.dictionaryapi.dev/api/v2/entries/en/%s", word)), utils.ParseResponse[Result])
+	return apicall.Call(apicall.Get(urlAssemble(word)), utils.ParseResponseBody[Result])
+}
 
+func urlAssemble(word string) string {
+	return fmt.Sprintf("https://api.dictionaryapi.dev/api/v2/entries/en/%s", word)
 }
 
 type Result []ResultElement

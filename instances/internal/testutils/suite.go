@@ -16,8 +16,10 @@ type Suite struct {
 	afterTest  []func()
 }
 
-func (s *Suite) RegisterBeforeAndAfterTest(f ...func() func()) {
-	s.beforeTest = f
+func NewSuite(beforeAndAfterTestHooks ...func() func()) *Suite {
+	return &Suite{
+		beforeTest: beforeAndAfterTestHooks,
+	}
 }
 
 func (s *Suite) BeforeTest() {

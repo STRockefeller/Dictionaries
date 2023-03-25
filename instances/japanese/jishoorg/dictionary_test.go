@@ -29,9 +29,9 @@ type Suite struct {
 }
 
 func NewSuite() *Suite {
-	s := &testutils.Suite{}
-	s.RegisterBeforeAndAfterTest(testutils.PatchHttpRequest(urlAssemble(testWord), http.StatusOK, mockResponseBody))
-	return &Suite{Suite: *s}
+	return &Suite{
+		Suite: *testutils.NewSuite(testutils.PatchHttpRequest(urlAssemble(testWord), http.StatusOK, mockResponseBody)),
+	}
 }
 
 func TestSuite(t *testing.T) {

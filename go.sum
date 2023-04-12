@@ -1,5 +1,9 @@
 bou.ke/monkey v1.0.2 h1:kWcnsrCNUatbxncxR/ThdYqbytgOIArtYWqcQLQzKLI=
 bou.ke/monkey v1.0.2/go.mod h1:OqickVX3tNx6t33n1xvtTtu85YN5s6cKwVug+oHMaIA=
+github.com/STRockefeller/collection v0.0.0-20230411030518-1f27f4c0c6c3 h1:csYRCqeISYzml69MnKikZpCUDVOazoAXhZJThLSYCqk=
+github.com/STRockefeller/collection v0.0.0-20230411030518-1f27f4c0c6c3/go.mod h1:5QM/Qn3rwql+SvCmb+iCFJZCos8yyJ9Ls/6N9TDc6Oo=
+github.com/STRockefeller/testutils v0.1.0 h1:96TrBRVgYL/lnjiBlVOZX9jYjtnjjQ8KoavW5IvXkkk=
+github.com/STRockefeller/testutils v0.1.0/go.mod h1:UaarPOW6g3MshDFtp58fdRRtlD68o50xczk8MqMRswo=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

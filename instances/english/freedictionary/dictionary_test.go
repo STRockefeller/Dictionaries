@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/STRockefeller/dictionaries/instances/internal/testutils"
+	rsuite "github.com/STRockefeller/testutils/suite"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )
@@ -25,12 +26,12 @@ func TestDictionary(t *testing.T) {
 /* -------------------------------------------------------------------------- */
 
 type Suite struct {
-	testutils.Suite
+	rsuite.SuiteTemplate
 }
 
 func NewSuite() *Suite {
 	return &Suite{
-		Suite: *testutils.NewSuite(testutils.PatchHttpRequest(urlAssemble(testWord), http.StatusOK, mockResponseBody)),
+		SuiteTemplate: *rsuite.NewSuiteTemplate().AddSetupTestFuncs(testutils.PatchHttpRequest(urlAssemble(testWord), http.StatusOK, mockResponseBody)),
 	}
 }
 

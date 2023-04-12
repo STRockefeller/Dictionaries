@@ -6,33 +6,7 @@ import (
 	"strings"
 
 	"bou.ke/monkey"
-	"github.com/samber/lo"
-	"github.com/stretchr/testify/suite"
 )
-
-type Suite struct {
-	suite.Suite
-	beforeTest []func() func()
-	afterTest  []func()
-}
-
-func NewSuite(beforeAndAfterTestHooks ...func() func()) *Suite {
-	return &Suite{
-		beforeTest: beforeAndAfterTestHooks,
-	}
-}
-
-func (s *Suite) BeforeTest() {
-	s.afterTest = lo.Map(s.beforeTest, func(f func() func(), _ int) func() {
-		return f()
-	})
-}
-
-func (s *Suite) AfterTest() {
-	lo.ForEach(s.afterTest, func(f func(), _ int) {
-		f()
-	})
-}
 
 func PatchHttpRequest(url string, mockStatusCode int, mockResponseBody string) func() func() {
 	return func() func() {

@@ -72,3 +72,13 @@ type Attribution struct {
 	Jmnedict bool `json:"jmnedict"`
 	Dbpedia  any  `json:"dbpedia"`
 }
+
+func (r Result) ListAllMeanings() []string {
+	var meanings []string
+	for _, element := range r.Data {
+		for _, sense := range element.Senses {
+			meanings = append(meanings, sense.EnglishDefinitions...)
+		}
+	}
+	return meanings
+}

@@ -45,3 +45,15 @@ type Phonetic struct {
 	Text  string  `json:"text"`
 	Audio *string `json:"audio,omitempty"`
 }
+
+func (r Result) ListAllMeanings() []string {
+	var meanings []string
+	for _, element := range r {
+		for _, meaning := range element.Meanings {
+			for _, definition := range meaning.Definitions {
+				meanings = append(meanings, definition.Definition)
+			}
+		}
+	}
+	return meanings
+}
